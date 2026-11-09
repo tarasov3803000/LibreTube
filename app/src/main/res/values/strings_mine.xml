@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Строки нашей сборки: отдельный файл, чтобы не конфликтовать с обновлениями LibreTube -->
+<resources>
+    <string name="mine_for_you">For you</string>
+    <string name="mine_subscriptions_new">New from subscriptions</string>
+</resources>

@@ -50,10 +50,7 @@ class TrendsFragment : Fragment(R.layout.fragment_trends) {
             tab.text = getString(category.titleRes)
         }.attach()
 
-        val initialCategory = PreferenceHelper.getString(
-            PreferenceKeys.TRENDING_CATEGORY,
-            TrendingCategory.GAMING.name
-        ).let { TrendingCategory.valueOf(it) }
+        val initialCategory = com.github.libretube.helpers.TrendingCategoryHelper.current()
 
         val initialTabIndex = categories.indexOf(initialCategory)
         val initialTab = binding.tabLayout.getTabAt(initialTabIndex)

@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.libretube.R
 import com.github.libretube.api.MediaServiceRepository
@@ -20,10 +20,12 @@ import com.github.libretube.databinding.FragmentHomeBinding
 import com.github.libretube.db.obj.PlaylistBookmark
 import com.github.libretube.enums.PlaylistType
 import com.github.libretube.helpers.PreferenceHelper
+import com.github.libretube.helpers.TrendingCategoryHelper
 import com.github.libretube.ui.activities.SettingsActivity
 import com.github.libretube.ui.adapters.CarouselPlaylist
 import com.github.libretube.ui.adapters.CarouselPlaylistAdapter
 import com.github.libretube.ui.adapters.VideoCardsAdapter
+import com.github.libretube.ui.base.DynamicLayoutManagerFragment
 import com.github.libretube.ui.models.HomeViewModel
 import com.github.libretube.ui.models.SubscriptionsViewModel
 import com.github.libretube.ui.models.TrendsViewModel
@@ -34,7 +36,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : DynamicLayoutManagerFragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -42,11 +44,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val subscriptionsViewModel: SubscriptionsViewModel by activityViewModels()
     private val trendsViewModel: TrendsViewModel by activityViewModels()
 
+    private val forYouAdapter = VideoCardsAdapter()
     private val trendingAdapter = VideoCardsAdapter()
     private val feedAdapter = VideoCardsAdapter(columnWidthDp = 250f)
     private val watchingAdapter = VideoCardsAdapter(columnWidthDp = 250f)
     private val bookmarkAdapter = CarouselPlaylistAdapter(PlaylistType.PUBLIC)
     private val playlistAdapter = CarouselPlaylistAdapter(PlaylistType.PRIVATE)
+
+    // «Популярное» на главной — по настройке «Сетка», как остальные ленты (было жёстко 2)
+    override fun setLayoutManagers(gridItems: Int) {
+        _binding?.trendingRV?.layoutManager = GridLayoutManager(context, gridItems)
+        _binding?.forYouRV?.layoutManager = GridLayoutManager(context, gridItems)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentHomeBinding.bind(view)
@@ -61,6 +70,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val playlistsSnapHelper = CarouselSnapHelper()
         playlistsSnapHelper.attachToRecyclerView(binding.playlistsRV)
 
+        binding.forYouRV.adapter = forYouAdapter
         binding.trendingRV.adapter = trendingAdapter
         binding.featuredRV.adapter = feedAdapter
         binding.bookmarksRV.adapter = bookmarkAdapter
@@ -78,6 +88,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.watchingRV.adapter = watchingAdapter
 
         with(homeViewModel) {
+            forYou.observe(viewLifecycleOwner, ::showForYou)
             trending.observe(viewLifecycleOwner, ::showTrending)
             feed.observe(viewLifecycleOwner, ::showFeed)
             bookmarks.observe(viewLifecycleOwner, ::showBookmarks)
@@ -120,10 +131,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val trendingCategories = MediaServiceRepository.instance.getTrendingCategories()
         binding.trendingCategory.isVisible = trendingCategories.size > 1
         binding.trendingCategory.setOnClickListener {
-            val currentTrendingCategoryPref = PreferenceHelper.getString(
-                PreferenceKeys.TRENDING_CATEGORY,
-                TrendingCategory.GAMING.name
-            ).let { categoryName -> trendingCategories.first { it.name == categoryName } }
+            val currentTrendingCategoryPref = TrendingCategoryHelper.current()
 
             val categories = trendingCategories.map { category ->
                 category to getString(category.titleRes)
@@ -204,6 +212,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         makeVisible(binding.trendingRV, binding.trendingTV)
         trendingAdapter.submitList(trendingStreams.streams.take(10))
+    }
+
+    private fun showForYou(streamItems: List<StreamItem>?) {
+        if (streamItems.isNullOrEmpty()) return
+
+        makeVisible(binding.forYouRV, binding.forYouTV)
+        forYouAdapter.submitList(streamItems)
     }
 
     private fun showFeed(streamItems: List<StreamItem>?) {

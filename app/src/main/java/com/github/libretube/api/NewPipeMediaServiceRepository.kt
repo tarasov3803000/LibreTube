@@ -259,7 +259,8 @@ class NewPipeMediaServiceRepository : MediaServiceRepository {
     }
 
     // see https://github.com/TeamNewPipe/NewPipeExtractor/tree/dev/extractor/src/main/java/org/schabi/newpipe/extractor/services/youtube/extractors/kiosk
-    private val trendingCategories = TrendingCategory.entries.associate {
+    // наша сборка: без «Игр»
+    private val trendingCategories = TrendingCategory.entries.filter { it != TrendingCategory.GAMING }.associate {
         when (it) {
             TrendingCategory.GAMING -> it to "trending_gaming"
             TrendingCategory.TRAILERS -> it to "trending_movies_and_shows"

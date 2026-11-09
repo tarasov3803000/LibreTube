@@ -16,6 +16,7 @@ import com.github.libretube.db.obj.PlaylistBookmark
 import com.github.libretube.enums.WatchHistoryStatus
 import com.github.libretube.extensions.runSafely
 import com.github.libretube.extensions.updateIfChanged
+import com.github.libretube.helpers.ForYouHelper
 import com.github.libretube.helpers.PlayerHelper
 import com.github.libretube.helpers.PreferenceHelper
 import com.github.libretube.repo.FeedRefresh
@@ -43,6 +44,7 @@ class HomeViewModel : ViewModel() {
     val trending: MutableLiveData<Pair<TrendingCategory, TrendsViewModel.TrendingStreams>> =
         MutableLiveData(null)
     val feed: MutableLiveData<List<StreamItem>> = MutableLiveData(null)
+    val forYou: MutableLiveData<List<StreamItem>> = MutableLiveData(null)
     val bookmarks: MutableLiveData<List<PlaylistBookmark>> = MutableLiveData(null)
     val playlists: MutableLiveData<List<Playlists>> = MutableLiveData(null)
     val continueWatching: MutableLiveData<List<StreamItem>> = MutableLiveData(null)
@@ -52,6 +54,7 @@ class HomeViewModel : ViewModel() {
     private val sections get() = listOf(trending, feed, bookmarks, playlists, continueWatching)
 
     private var loadHomeJob: Job? = null
+    private var forYouJob: Job? = null
 
     fun loadHomeFeed(
         context: Context,
@@ -73,6 +76,15 @@ class HomeViewModel : ViewModel() {
                 )
                 loadedSuccessfully.value = sections.any { it.value != null }
                 isLoading.value = false
+
+                // наша сборка: «Для Вас» — после остальных разделов, из уже загруженных подписок и трендов;
+                // отдельной задачей, чтобы не задерживать главную и не будить «долгую загрузку»
+                forYouJob?.cancel()
+                forYouJob = viewModelScope.launch {
+                    runCatching {
+                        ForYouHelper.load(subscriptionsViewModel.videoFeed.value ?: feed.value, trending.value?.second?.streams)
+                    }.onSuccess { forYou.value = it }
+                }
             }
 
             withContext(Dispatchers.IO) {
@@ -86,10 +98,7 @@ class HomeViewModel : ViewModel() {
 
     private suspend fun loadTrending(context: Context) {
         val region = PreferenceHelper.getTrendingRegion(context)
-        val category = PreferenceHelper.getString(
-            PreferenceKeys.TRENDING_CATEGORY,
-            TrendingCategory.GAMING.name
-        ).let { TrendingCategory.valueOf(it) }
+        val category = com.github.libretube.helpers.TrendingCategoryHelper.current()
 
         runSafely(
             onSuccess = { videos ->

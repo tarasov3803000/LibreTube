@@ -26,6 +26,28 @@
                 android:orientation="vertical"
                 android:paddingBottom="10dp">
 
+                <!-- наша сборка: «Для Вас» -->
+                <LinearLayout
+                    android:id="@+id/forYouTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/HomeCategoryTitle"
+                        android:background="@null"
+                        android:text="@string/mine_for_you" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/forYouRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:visibility="gone" />
+
                 <LinearLayout
                     android:id="@+id/featuredTV"
                     android:layout_width="match_parent"
@@ -36,7 +58,7 @@
 
                     <TextView
                         style="@style/HomeCategoryTitle"
-                        android:text="@string/featured"
+                        android:text="@string/mine_subscriptions_new"
                         app:drawableEndCompat="@drawable/ic_arrow_right" />
 
                 </LinearLayout>
