@@ -31,13 +31,16 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.github.libretube"
+        // наша сборка: своё приложение MyTube рядом с обычным LibreTube (было com.github.libretube)
+        applicationId = "pro.antontarasov.mytube"
         minSdk = 26
         targetSdk = 36
-        versionCode = 72
-        versionName = "32.1"
+        // наша сборка: versionCode = код upstream × 100 + номер нашего выпуска (upstream 72 → 7201, 7202…);
+        // versionName = версия upstream + «-mytube.N», тег выпуска на GitHub — ровно versionName
+        versionCode = 72 * 100 + 1
+        versionName = "32.1-mytube.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        resValue("string", "app_name", "LibreTube")
+        resValue("string", "app_name", "MyTube") // наша сборка
     }
 
     ksp {
@@ -74,7 +77,7 @@ android {
         getByName("debug") {
             isDebuggable = true
             applicationIdSuffix = ".debug"
-            resValue("string", "app_name", "LibreTube Debug")
+            resValue("string", "app_name", "MyTube Debug") // наша сборка
         }
     }
 

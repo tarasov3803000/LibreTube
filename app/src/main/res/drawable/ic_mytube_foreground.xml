@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- наша сборка: белый «экран» с красной кнопкой воспроизведения (YouTube наоборот,
+     чтобы не путать с приложением YouTube на том же телефоне) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,33H72A12,12 0,0 1,84 45V63A12,12 0,0 1,72 75H36A12,12 0,0 1,24 63V45A12,12 0,0 1,36 33Z" />
+    <path
+        android:fillColor="#FF0033"
+        android:pathData="M48,44L66,54L48,64Z" />
+</vector>
