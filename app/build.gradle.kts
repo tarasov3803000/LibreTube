@@ -37,8 +37,8 @@ android {
         targetSdk = 36
         // наша сборка: versionCode = код upstream × 100 + номер нашего выпуска (upstream 72 → 7201, 7202…);
         // versionName = версия upstream + «-mytube.N», тег выпуска на GitHub — ровно versionName
-        versionCode = 72 * 100 + 2
-        versionName = "32.1-mytube.2"
+        versionCode = 72 * 100 + 3
+        versionName = "32.1-mytube.3"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resValue("string", "app_name", "MyTube") // наша сборка
     }
