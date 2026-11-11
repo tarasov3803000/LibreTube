@@ -2,4 +2,32 @@
 <resources>
     <string name="mine_for_you">Для Вас</string>
     <string name="mine_subscriptions_new">Новое в подписках</string>
+    <!-- первый экран (MyTubeWelcomeActivity) -->
+    <string name="mine_welcome_login_subtitle">Войдите, чтобы история и подписки были на всех Ваших устройствах</string>
+    <string name="mine_welcome_create_subtitle">Новый аккаунт: придумайте имя и пароль</string>
+    <string name="mine_welcome_name">Имя</string>
+    <string name="mine_welcome_name_helper">Буквы, цифры, дефис — например, ivanov-petr</string>
+    <string name="mine_welcome_password">Пароль</string>
+    <string name="mine_welcome_new_password">Новый пароль</string>
+    <string name="mine_welcome_login">Войти</string>
+    <string name="mine_welcome_create">Создать аккаунт</string>
+    <string name="mine_welcome_to_create">Нет аккаунта? Создать</string>
+    <string name="mine_welcome_to_login">У меня уже есть аккаунт</string>
+    <string name="mine_welcome_without_account">Без аккаунта</string>
+    <string name="mine_welcome_restore">Восстановить из копии</string>
+    <string name="mine_welcome_local_data">Подписки и история, сохранённые на этом телефоне без аккаунта, после входа видны не будут. Сначала сделайте резервную копию в настройках.</string>
+    <string name="mine_welcome_enter_name">Введите имя</string>
+    <string name="mine_welcome_enter_password">Введите пароль</string>
+    <string name="mine_welcome_password_short">Не короче %1$d знаков (сейчас %2$d). Проще всего — надёжный пароль, который Google предложит над клавиатурой: он сохранится и подставится на другом телефоне.</string>
+    <string name="mine_welcome_password_ok">Пароль подходит. Когда Google предложит его сохранить — согласитесь.</string>
+    <string name="mine_welcome_name_taken">Имя занято, выберите другое</string>
+    <string name="mine_welcome_password_breached">Этот пароль есть в списках утёкших паролей, выберите другой</string>
+    <string name="mine_welcome_wrong_password">Пароль не подходит к аккаунту «%1$s»</string>
+    <string name="mine_welcome_no_account_title">Не получилось войти</string>
+    <string name="mine_welcome_no_account_message">Аккаунта «%1$s» нет или пароль неверный. Создать новый аккаунт с этим именем?</string>
+    <string name="mine_welcome_no_account_create">Создать</string>
+    <string name="mine_welcome_no_account_fix">Исправить</string>
+    <string name="mine_welcome_no_connection">Нет связи с сервером. Проверьте интернет.</string>
+    <string name="mine_welcome_server_error">Ошибка сервера: %1$s</string>
+    <string name="mine_welcome_restore_failed">Не получилось восстановить из этого файла</string>
 </resources>

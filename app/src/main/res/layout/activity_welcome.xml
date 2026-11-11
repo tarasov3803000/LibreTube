@@ -37,16 +37,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- наша сборка: прокрутка и отступ под нижние кнопки — иначе длинное описание выталкивает
-         «Войти/зарегистрироваться» под панель с OK, и OK навсегда остаётся серым -->
-    <androidx.core.widget.NestedScrollView
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="160dp">
-
     <LinearLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -160,7 +152,6 @@
 
         </LinearLayout>
     </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
     <FrameLayout
         android:layout_width="match_parent"

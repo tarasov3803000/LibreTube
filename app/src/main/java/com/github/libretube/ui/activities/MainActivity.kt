@@ -110,6 +110,13 @@ class MainActivity : AbstractPlayerHostActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
 
+        // наша сборка: свой первый экран — имя, пароль, «Войти» (MyTubeWelcomeActivity)
+        if (MyTubeWelcomeActivity.shouldShow()) {
+            startActivity(Intent(this, MyTubeWelcomeActivity::class.java))
+            finish()
+            return
+        }
+
         // show welcome activity on first app startup (or after the update to prospectively v32)
         if (!PreferenceHelper.getBoolean(PreferenceKeys.WELCOME_ACTIVITY_FINISHED, false)) {
             val welcomeIntent = Intent(this, WelcomeActivity::class.java)

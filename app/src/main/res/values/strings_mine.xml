@@ -3,4 +3,33 @@
 <resources>
     <string name="mine_for_you">For you</string>
     <string name="mine_subscriptions_new">New from subscriptions</string>
+    <!-- первый экран (MyTubeWelcomeActivity) -->
+    <string name="mine_welcome_title" translatable="false">MyTube</string>
+    <string name="mine_welcome_login_subtitle">Sign in to keep your history and subscriptions on all your devices</string>
+    <string name="mine_welcome_create_subtitle">New account: choose a name and a password</string>
+    <string name="mine_welcome_name">Name</string>
+    <string name="mine_welcome_name_helper">Latin or Cyrillic letters, digits, hyphen</string>
+    <string name="mine_welcome_password">Password</string>
+    <string name="mine_welcome_new_password">New password</string>
+    <string name="mine_welcome_login">Sign in</string>
+    <string name="mine_welcome_create">Create account</string>
+    <string name="mine_welcome_to_create">No account yet? Create one</string>
+    <string name="mine_welcome_to_login">I already have an account</string>
+    <string name="mine_welcome_without_account">Without account</string>
+    <string name="mine_welcome_restore">Restore from backup</string>
+    <string name="mine_welcome_local_data">Subscriptions and history saved on this phone without an account will not be shown after signing in. Make a backup in the settings first.</string>
+    <string name="mine_welcome_enter_name">Enter a name</string>
+    <string name="mine_welcome_enter_password">Enter the password</string>
+    <string name="mine_welcome_password_short">At least %1$d characters (now %2$d). Easiest: take the strong password Google suggests above the keyboard — it will be saved and filled in on your other phone.</string>
+    <string name="mine_welcome_password_ok">Password is fine. Let Google save it when asked.</string>
+    <string name="mine_welcome_name_taken">Name taken, choose another one</string>
+    <string name="mine_welcome_password_breached">This password is in leaked-password lists, choose another one</string>
+    <string name="mine_welcome_wrong_password">Password doesn\'t match the account «%1$s»</string>
+    <string name="mine_welcome_no_account_title">Couldn\'t sign in</string>
+    <string name="mine_welcome_no_account_message">There is no account «%1$s», or the password is wrong. Create a new account with this name?</string>
+    <string name="mine_welcome_no_account_create">Create</string>
+    <string name="mine_welcome_no_account_fix">Fix</string>
+    <string name="mine_welcome_no_connection">No connection to the server. Check the internet.</string>
+    <string name="mine_welcome_server_error">Server error: %1$s</string>
+    <string name="mine_welcome_restore_failed">Couldn\'t restore from this file</string>
 </resources>
