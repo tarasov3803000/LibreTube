@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Наша сборка: замены строк LibreTube — без слова «LibreTube» и проще про аккаунт.
+     Папка подключена к типам сборки debug и release (app/build.gradle.kts): их ресурсы
+     перекрывают main, поэтому strings.xml LibreTube не трогаем и при обновлениях конфликтов нет. -->
+<resources>
+    <string name="audio_only_mode_summary">Turn MyTube into a music player</string>
+    <string name="welcome">Welcome to MyTube!</string>
+    <string name="libretube_sync_server">Sync server</string>
+    <string name="sync_server_url">Sync server address</string>
+    <string name="external_download_provider_summary">Enter the package name of the app you want to use for downloading videos. Leave blank to use the built-in downloader.</string>
+    <string name="sync_type_summary_libretube">Store playlists and subscriptions on the sync server (%1$s), so you can sign in on any other device.</string>
+    <string name="account">Account</string>
+    <string name="instance_summary">Who you are signed in as, history</string>
+</resources>

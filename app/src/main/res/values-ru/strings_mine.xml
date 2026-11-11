@@ -30,4 +30,10 @@
     <string name="mine_welcome_no_connection">Нет связи с сервером. Проверьте интернет.</string>
     <string name="mine_welcome_server_error">Ошибка сервера: %1$s</string>
     <string name="mine_welcome_restore_failed">Не получилось восстановить из этого файла</string>
+    <!-- экран «Аккаунт» в настройках (MyTubeAccount) -->
+    <string name="mine_account_signed_in">Вы вошли как %1$s</string>
+    <string name="mine_account_signed_in_no_name">Вы вошли в аккаунт</string>
+    <string name="mine_account_signed_in_summary">Подписки, плейлисты и история — на всех Ваших устройствах с этим аккаунтом</string>
+    <string name="mine_account_signed_out">Вы не вошли</string>
+    <string name="mine_account_signed_out_summary">Войти или создать аккаунт</string>
 </resources>

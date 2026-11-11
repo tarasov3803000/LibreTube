@@ -157,6 +157,13 @@ class DataManagementSettings : BasePreferenceFragment() {
         findPreference<Preference>(PreferenceKeys.LOGIN_REGISTER)?.isVisible = !loggedIn && hasAuthSupport
         findPreference<Preference>(PreferenceKeys.LOGOUT)?.isVisible = loggedIn && hasAuthSupport
         findPreference<Preference>(PreferenceKeys.DELETE_ACCOUNT)?.isVisible = loggedIn && hasAuthSupport
+        MyTubeAccount.update(this) // наша сборка: «Вы вошли как …», без выбора сервера
+    }
+
+    // наша сборка: после входа на нашем первом экране — «Вы вошли как …», «Выйти»
+    override fun onResume() {
+        super.onResume()
+        toggleAuthAccountActionsUI(UserDataRepositoryHelper.syncServerType != SyncServerType.NONE)
     }
 
     private fun logoutAndUpdateUI(hasAuthSupport: Boolean) {

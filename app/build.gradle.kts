@@ -81,6 +81,13 @@ android {
         }
     }
 
+    // наша сборка: свои замены строк LibreTube (src/mytube/res) — ресурсы типов сборки
+    // перекрывают main, поэтому strings.xml LibreTube не трогаем
+    sourceSets {
+        getByName("debug").res.srcDir("src/mytube/res")
+        getByName("release").res.srcDir("src/mytube/res")
+    }
+
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17

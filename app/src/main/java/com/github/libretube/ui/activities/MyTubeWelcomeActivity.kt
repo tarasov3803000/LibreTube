@@ -286,7 +286,10 @@ class MyTubeWelcomeActivity : BaseActivity() {
 
     private fun navigateToMain() {
         markDone()
-        startActivity(Intent(this, MainActivity::class.java))
+        // из настроек («Аккаунт» → «Вы не вошли») — просто вернуться туда
+        if (!intent.getBooleanExtra(EXTRA_FROM_SETTINGS, false)) {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         finish()
     }
 
@@ -296,6 +299,7 @@ class MyTubeWelcomeActivity : BaseActivity() {
     private fun Exception.isNameTaken() = message.orEmpty().contains("already taken")
 
     companion object {
+        const val EXTRA_FROM_SETTINGS = "from_settings"
         private const val STATE_CREATE_MODE = "create_mode"
         private const val MYTUBE_WELCOME_DONE = "mytube_welcome_done"
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Наша сборка: замены строк LibreTube (см. values/strings.xml этой папки) -->
+<resources>
+    <string name="about">О приложении</string>
+    <string name="audio_only_mode_summary">Превратите MyTube в музыкальный проигрыватель</string>
+    <string name="welcome">Добро пожаловать в MyTube!</string>
+    <string name="libretube_sync_server">Сервер синхронизации</string>
+    <string name="sync_server_url">Адрес сервера синхронизации</string>
+    <string name="external_download_provider_summary">Название пакета приложения, которое будет использоваться для скачивания видео. Оставьте пустым, чтобы скачивать встроенным загрузчиком.</string>
+    <string name="sync_type_summary_libretube">Плейлисты и подписки хранятся на сервере синхронизации (%1$s): войдите в аккаунт на любом другом устройстве — и они будут там.</string>
+    <string name="account">Аккаунт</string>
+    <string name="instance_summary">Под каким именем Вы вошли, история</string>
+</resources>
